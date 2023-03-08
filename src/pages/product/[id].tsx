@@ -28,7 +28,6 @@ export default function Product({ product }: ProductProps) {
     useState(false);
 
   async function handleBuyButton() {
-    console.log('product.defaultPriceId', product.defaultPriceId)
     try {
       setIsCreatingCheckoutSession(true);
 
@@ -81,8 +80,6 @@ export const getStaticProps: GetStaticProps<any, { id: string }> = async ({
   });
 
   const price = product.default_price as Stripe.Price;
-  console.log(product.id)
-
   return {
     props: {
       product: {
