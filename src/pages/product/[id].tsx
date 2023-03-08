@@ -1,6 +1,8 @@
 // import axios from "axios";
+import axios from "axios";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Image from "next/legacy/image";
+import { useState } from "react";
 // import { useState } from "react";
 import Stripe from "stripe";
 import { stripe } from "../../lib/stripe";
@@ -22,26 +24,27 @@ interface ProductProps {
 }
 
 export default function Product({ product }: ProductProps) {
-  // const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] =
-  //   useState(false);
+  const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] =
+    useState(false);
 
-  // async function handleBuyButton() {
-  //   try {
-  //     setIsCreatingCheckoutSession(true);
+  async function handleBuyButton() {
+    console.log('product.defaultPriceId', product.defaultPriceId)
+    try {
+      setIsCreatingCheckoutSession(true);
 
-  //     const response = await axios.post("/api/checkout", {
-  //       priceId: product.defaultPriceId,
-  //     });
+      const response = await axios.post("/api/checkout", {
+        priceId: product.defaultPriceId,
+      });
 
-  //     const { checkoutUrl } = response.data;
+      const { checkoutUrl } = response.data;
 
-  //     // window.location.href = checkoutUrl;
-  //   } catch (err) {
-  //     setIsCreatingCheckoutSession(false);
+      window.location.href = checkoutUrl;
+    } catch (err) {
+      setIsCreatingCheckoutSession(false);
 
-  //     alert("Falha ao redirecionar ao checkout!");
-  //   }
-  // }
+      alert("Falha ao redirecionar ao checkout!");
+    }
+  }
 
   return (
     <ProductContainer>
@@ -55,9 +58,7 @@ export default function Product({ product }: ProductProps) {
 
         <p>{product.description}</p>
 
-        <button>
-          Comprar agora
-        </button>
+        <button onClick={handleBuyButton}>Comprar agora</button>
       </ProductDetails>
     </ProductContainer>
   );
@@ -80,6 +81,7 @@ export const getStaticProps: GetStaticProps<any, { id: string }> = async ({
   });
 
   const price = product.default_price as Stripe.Price;
+  console.log(product.id)
 
   return {
     props: {
