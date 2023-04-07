@@ -2,7 +2,8 @@
   Projeto criado com o intuito de mostrar meus conhecimentos ao decorrer da minha carreira.
 </h4>
 
-![Preview](./igniteShop.png)
+![68747470733a2f2f692e696d6775722e636f6d2f6a3371713239382e706e67](https://user-images.githubusercontent.com/86435195/230642648-d41427f8-e93d-4c47-a7c8-5d23cbd0651e.png)
+
 
 ## 📝 Sobre o projeto
 O projeto é uma aplicação web que permitirá aos usuários comprar produtos online utilizando a plataforma de pagamentos Stripe. Ele será desenvolvido utilizando as tecnologias ReactJs, ViteJs, Typescript, Stitches e Stripe.
